@@ -1,5 +1,4 @@
 using System;
-using System.Cli;
 using System.IO;
 using JitTools.Runtime;
 
@@ -14,12 +13,12 @@ namespace JitTools {
 		private bool _keepMaxStacks;
 		private bool _useNativeWriter;
 
-		[Argument("-f", IsRequired = true, Type = "FILE", Description = "Assembly path")]
+		[Option("-f", IsRequired = true, Description = "Assembly path")]
 		internal string AssemblyPathCliSetter {
 			set => AssemblyPath = value;
 		}
 
-		[Argument("-hook-type", IsRequired = false, DefaultValue = "Inline", Type = "STR", Description = "JIT hook type")]
+		[Option("-hook-type", IsRequired = false, DefaultValue = "Inline", Description = "JIT hook type")]
 		internal string HookTypeCliSetter {
 			set {
 				switch (value.ToUpperInvariant()) {
@@ -41,32 +40,32 @@ namespace JitTools {
 			}
 		}
 
-		[Argument("--dump-before-cctor", Description = "Dump module before run static constructor")]
+		[Option("--dump-before-cctor", Description = "Dump module before run static constructor")]
 		internal bool DumpBeforeStaticConstructorCliSetter {
 			set => _dumpBeforeStaticConstructor = value;
 		}
 
-		[Argument("--preserve-all", Description = "Preserve all(--preserve-tokens --preserve-tokens --keep-max-stacks --use-native-writer)")]
+		[Option("--preserve-all", Description = "Preserve all(--preserve-tokens --preserve-tokens --keep-max-stacks --use-native-writer)")]
 		internal bool PreserveAllCliSetter {
 			set => _preserveAll = value;
 		}
 
-		[Argument("--preserve-runtime", Description = "Preserve packer runtime")]
+		[Option("--preserve-runtime", Description = "Preserve packer runtime")]
 		internal bool PreserveRuntimeCliSetter {
 			set => _preserveRuntime = value;
 		}
 
-		[Argument("--preserve-tokens", Description = "Preserve original tokens")]
+		[Option("--preserve-tokens", Description = "Preserve original tokens")]
 		internal bool PreserveTokensCliSetter {
 			set => PreserveTokens = value;
 		}
 
-		[Argument("--keep-max-stacks", Description = "Keep old max-stacks")]
+		[Option("--keep-max-stacks", Description = "Keep old max-stacks")]
 		internal bool KeepMaxStacksCliSetter {
 			set => KeepMaxStacks = value;
 		}
 
-		[Argument("--use-native-writer", Description = "Use dnlib.DotNet.Writer.NativeModuleWriter")]
+		[Option("--use-native-writer", Description = "Use dnlib.DotNet.Writer.NativeModuleWriter")]
 		internal bool UseNativeWriterCliSetter {
 			set => UseNativeWriter = value;
 		}
